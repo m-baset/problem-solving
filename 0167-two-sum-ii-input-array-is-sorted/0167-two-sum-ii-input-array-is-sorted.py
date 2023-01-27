@@ -1,24 +1,19 @@
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        i = 0
+        # using 2 pointers
+        length = len(numbers)
+        l = 0
+        r = length - 1
         
-        while(1):
-            my_target = target - numbers[i]
+        while l<r:
+            if numbers[l] + numbers[r] == target:
+                return [l+1, r+1]
             
-            # do binary search for my_target (givem numbers are sorted)
-            low = i + 1
-            high = len(numbers) - 1
-            while(low <= high):
-                center = (low + high) // 2
-                if numbers[center] == my_target:
-                    return [i+1, center+1]
-                elif numbers[center] > my_target:
-                    high = center - 1
-                else:
-                    low = center + 1
-            
-            
-            i += 1
+            if numbers[l] + numbers[r] > target:
+                r-=1
+            else:
+                l+=1
         
+        return []
         
         
